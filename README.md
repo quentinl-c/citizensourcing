@@ -40,7 +40,7 @@ Voici quelques liens utiles si vous souhaitez en savoir plus sur l'application :
 
 * Installation de pybossa en local : http://pybossa.com/getting-started/
 
-> Attention : la méthode utilisée pour installer l'application a changé et il se peut que vous rencontriez des problème. Dans ce cas là, je vous conseille d'utiliser l'ancienne méthode d'installation :
+> Attention : la méthode utilisée pour installer l'application a changé et il se peut que vous rencontriez des problèmes. Dans ce cas-là, je vous conseille d'utiliser l'ancienne méthode d'installation.
 
 ```sh
 git clone https://github.com/PyBossa/pybossa
@@ -54,7 +54,7 @@ python run.py
 
 * Création d'un projet : http://docs.pybossa.com/en/latest/user/tutorial.html
 * Utilisation de la ligne de commande : http://docs.pybossa.com/en/latest/user/pbs.html
-* Configuration du projet
+* Configuration du projet : http://docs.pybossa.com/en/latest/user/project_settings.html
 * En cas de problème, vous pouvez contacter la communauté de développeurs à cette adresse : info@pybossa.com
 
 ##Mode d'emploi pour Citizen sourcing
