@@ -34,6 +34,38 @@ Vous pourrez ainsi:
 * supprimer des tâches
 * mettre à jour les templates
 
+####Utilisation de PBS
+
+#####Installation
+
+* Installation des composantes utiles :
+
+```sh
+sudo apt-get install pandoc
+pip install pybossa-pbs
+```
+* Création du fichier de configuration
+>Avant de passer à cette étape, vous devez créer un compte via l'interface web et récupérer la clé d'API
+
+```sh
+cd ~
+vim .pybossa.cfg
+```
+vous devez compléter le fichier de la façon suivante :
+
+```
+[default]
+server: http://theserver.com
+apikey: yourkey
+```
+
+#####Commandes utiles
+
+* Pour créer un projet : ```pbs create_project```
+* Pour ajouter des tâches (à partir d'un fichier JSON) : ```pbs add_tasks --tasks-file your_file.json --tasks-type=json```
+* Pour supprimer toutes les tâches : ```pbs delete_tasks```
+* Pour mettre à jour un template : ``pbs update_project ```
+ 
 ###Liens utiles
 
 Voici quelques liens utiles si vous souhaitez en savoir plus sur l'application :
