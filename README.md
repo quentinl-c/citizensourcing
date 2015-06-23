@@ -45,7 +45,7 @@ sudo apt-get install pandoc
 pip install pybossa-pbs
 ```
 * Création du fichier de configuration
->Avant de passer à cette étape, vous devez créer un compte via l'interface web et récupérer la clé d'API
+>Avant de passer à cette étape, vous devez créer un compte via l'interface web, vous rendre sur votre profil et copier votre clé d'API. Elle vous sera utile au moment de renseigner le fichier de configuration.
 
 ```sh
 cd ~
