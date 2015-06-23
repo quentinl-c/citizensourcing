@@ -22,6 +22,8 @@ Après la création du projet il sera possible par la suite de :
 * d'exporter les résultats (en csv ou en json)
 * d'accéder aux statistiques
 
+>Attention : au moment de la création du projet, ce dernier ne sera pas directement visible dans la partie projets. Si vous souhaitez vous assurer que le projet a bien été créé, vous pouvez vous rendre à l'adresse suivante : http://url-de-votre-serveur/project/nom_du_projet
+
 ####Utilisation de la ligne de commande
 
 Il est également possible d'interagir avec l'application à travers un terminal.
@@ -64,7 +66,9 @@ apikey: yourkey
 * Pour créer un projet : ```pbs create_project```
 * Pour ajouter des tâches (à partir d'un fichier JSON) : ```pbs add_tasks --tasks-file your_file.json --tasks-type=json```
 * Pour supprimer toutes les tâches : ```pbs delete_tasks```
-* Pour mettre à jour un template : ``pbs update_project ```
+* Pour mettre à jour un projet : ``pbs update_project ```
+
+>Attention : À chaque modification d'un projet, ajout/suppression de tâches ou modification du template, vous devez exécuter la commande pbs update_project
  
 ###Liens utiles
 
@@ -139,7 +143,5 @@ Une fois les différentes informations renseignées, vous pouvez ajouter les tâ
 ```sh
 pbs add_tasks --tasks-file tasks_file.json --tasks-type=json
 ```
-
-
 
 * Récupération des résultats : vous pouvez télécharger les résultats de l'application en allant sur la page du projet puis dans Tasks et dans Export Task. Il vous suffira de cliquer sur Tasks Runs pour télécharger les résultats.
