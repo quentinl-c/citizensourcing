@@ -22,7 +22,7 @@ Après la création du projet il sera possible par la suite de :
 * d'exporter les résultats (en csv ou en json)
 * d'accéder aux statistiques
 
->Attention : au moment de la création du projet, ce dernier ne sera pas directement visible dans la partie projets. Si vous souhaitez vous assurer que le projet a bien été créé, vous pouvez vous rendre à l'adresse suivante : http://url-de-votre-serveur/project/nom_du_projet
+>Attention : au moment de la création du projet, ce dernier ne sera pas directement visible dans la partie projets. Si vous souhaitez vous assurer que le projet a bien été créé, vous pouvez vous rendre à l'adresse suivante : http://url-de-votre-serveur/project/nom_du_projet. Le projet est visible dans les menus, uniquement quand il contient des tâches.
 
 ####Utilisation de la ligne de commande
 
@@ -144,4 +144,9 @@ Une fois les différentes informations renseignées, vous pouvez ajouter les tâ
 pbs add_tasks --tasks-file tasks_file.json --tasks-type=json
 ```
 
+Vous pouvez également utilisez un fichier csv pour configurer vos tâche, pour ce faire, vous devrez modifier le type :
+
+```sh
+pbs add_tasks --tasks-file tasks_file.json --tasks-type=csv
+```
 * Récupération des résultats : vous pouvez télécharger les résultats de l'application en allant sur la page du projet puis dans Tasks et dans Export Task. Il vous suffira de cliquer sur Tasks Runs pour télécharger les résultats.
