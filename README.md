@@ -4,7 +4,7 @@
 
 ###Présentation générale de PyBossa
 
-Sous pybossa, les ateliers se découpent en projets. Les projets correspondent à un "modèle de question" à poser. Chaque projet comporte des tâches. Une tâche décrit une question et les sources qui sont liées. 
+Sous pybossa, les ateliers se découpent en projets. Les projets correspondent à un "modèle de question" à poser. Chaque projet comporte des tâches. Une tâche décrit une question et les sources qui sont liées.
 
 Il est possible de générer des projets soit via l'interface web soit en ligne de commande.
 
@@ -32,7 +32,7 @@ Un tutoriel est proposé et montre les différentes commandes à utiliser : http
 Vous pourrez ainsi:
 
 * ajouter un projet
-* ajouter des tâches 
+* ajouter des tâches
 * supprimer des tâches
 * mettre à jour les templates
 
@@ -69,7 +69,7 @@ apikey: yourkey
 * Pour mettre à jour un projet : ``pbs update_project ```
 
 >Attention : À chaque modification d'un projet, ajout/suppression de tâches ou modification du template, vous devez exécuter la commande pbs update_project
- 
+
 ###Liens utiles
 
 Voici quelques liens utiles si vous souhaitez en savoir plus sur l'application :
@@ -93,6 +93,23 @@ python run.py
 * Configuration du projet : http://docs.pybossa.com/en/latest/user/project_settings.html
 * En cas de problème, vous pouvez contacter la communauté de développeurs à cette adresse : info@pybossa.com
 
+##Ajout d'un slider
+
+Pour ajouter le slider, il faut tout d'abord copier le nouveau template dans app-crowdsourcing2
+Il faut également modifier le header pour ajouter les nouvelles dépendances :
+* À partir du répertoire racine de PyBossa, vous devez vous rendre dans : ```pybossa/themes/default/templates ```
+* Vous devez ajouter ```<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">``` ainsi que ``` <script src="//code.jquery.com/jquery-1.10.2.js"></script>     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>```entre les balises header du fichier ```base.html```
+* Vous devez également, retirer ou commenter la ligne : ```<script type="text/javascript" src="{{url_for('static', filename='vendor/jquery.js')}}"></script>```
+
+Une fois toutes ces opérations effectuées, vous devez mettre à jour le projet en faisant : ```pbs update_project``` dans app-crowdsourcing2
+
+
+###Liens utiles:
+* Le slider mis en place utilise jquery UI, vous pouvez consulter la documentation de l'API à cette adresse : http://api.jqueryui.com/slider/
+
+* Si vous souhaitez modifier le design du slider, vous pouvez le faire facilement via : http://lugolabs.com/flat-slider
+
+
 ##Mode d'emploi pour Citizen sourcing
 
 Citizen sourcing se décompose en deux projets, un premier où l'utilisateur devra choisir parmi plusieurs images et déterminer laquelle est la plus représentative d'une catastrophe et un second projet où la personne interrogée devra déterminer le statut de la zone prise en photo.
@@ -110,7 +127,7 @@ Chaque projet est décrit avec un fichier json qui est de la forme :
 
 1. Récupération des sources : clonez le dépôt :``` git clone https://github.com/quentinl-c/citizensourcing.git```
 2. Ajout des sources dans le répertoire de l'application : copiez les répertoires de chaque projet dans le répertoire de pybossa
-3. Ajout des informations sur les projets : pour chaque projet, éditez le fichier project.json pour renseigner le nom et la description que vous souhaitez lui donner. Faites de même avec long_description.md pour renseigner une description un peu plus important 
+3. Ajout des informations sur les projets : pour chaque projet, éditez le fichier project.json pour renseigner le nom et la description que vous souhaitez lui donner. Faites de même avec long_description.md pour renseigner une description un peu plus important
 5. Ajout des projets à PyBossa : une fois que toutes les informations sur le projet sont renseignées, vous pouvez ajouter le projet (à faire pour les deux projets). Pour ce faire, vous devez vous rendre dans le répertoire du projet en question et faire la commande :```pbs create_project```  
 6. Création des tâches : Pour chaque projet, les tâches sont décrites dans un fichier json qui se nomme tasks_file.json. À titre d'exemple, voici l'allure des fichiers json pour chaque projet :
 
@@ -126,7 +143,7 @@ Pour chaque tâche à ajouter, il faudra donc renseigner ces paramètres.
 	{"len":3,"img":"http://morsures.org/sites/morsures.org/files/lorem-ipsum-logo.jpg"},
 	{"len":5,"img":"http://morsures.org/sites/morsures.org/files/lorem-ipsum-logo.jpg"}
 ]
-``` 
+```
 
 Projet 2 :
 
