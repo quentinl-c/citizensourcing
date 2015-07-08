@@ -36,11 +36,19 @@
 <div class="row skeleton"> <!-- Start Skeleton Row-->
     <div class="span6 "><!-- Start of Question and Submission DIV (column) -->
         <h1 id="question"><span id="i18n_question">According to you what is the status of this area ?</span></h1> <!-- The question will be loaded here -->
+        
         <div id="answer"> <!-- Start DIV for the submission buttons -->
-            <button class="btn btn-answer" value='Normal'>Normal</button>
-            <button class="btn btn-answer" value='Damaged'>Damaged</button>
-            <button class="btn btn-answer" value='Destroyed'>Destroyed</button>
-        </div><!-- End of DIV for the submission buttons -->
+        <div class="row">
+            <div class="span6"><div id="slider"></div></div>
+        </div>
+        <div class="row" style="margin-top:10px; margin-bottom:10px">
+            <div class="span1"><img src="http://cdn2-b.examiner.com/sites/default/files/styles/image_content_width/hash/48/a7/bad%20habits.JPG?itok=kik9G2sh"></div>
+            <div class="span4"></div>
+            <div class="span1"><img src="https://pbs.twimg.com/profile_images/553692751926022144/Addl1nZw.jpeg" ></div>
+        </div>
+        </div>
+            <button class="btn btn-answer" >submit</button>
+      
         <!-- Feedback items for the user -->
         <p><span id="i18n_working_task">You are working now on task:</span> <span id="task-id" class="label label-warning">#</span></p>
         <p><span id="i18n_tasks_completed">You have completed:</span> <span id="done" class="label label-info"></span> <span id="i18n_tasks_from">tasks from</span>
@@ -69,7 +77,6 @@
 </div><!-- End of Skeleton Row -->
 
 <script type="text/javascript">
-
     function loadDisqus() {
     $("#disqus_thread").toggle();
     $(".btn-disqus").toggle();
@@ -110,7 +117,11 @@ var messages = {"en": {
 // Update userLocale with server side information
  $(document).ready(function(){
      userLocale = document.getElementById('PYBOSSA_USER_LOCALE').textContent.trim();
-
+     $( "#slider" ).slider({
+        min : 0,
+        max : 10,
+        animate: "fast"
+     });
 });
 
 function i18n_translate() {
@@ -159,8 +170,7 @@ pybossa.presentTask(function(task, deferred) {
         $("#photo-link").attr("href", task.info.img);
         $('#task-id').html(task.id);
         $('.btn-answer').off('click').on('click', function(evt) {
-            var btn = $(this);
-            var answer = btn.attr("value");
+            var answer = $( "#slider" ).slider("value");
             if (typeof answer != 'undefined') {
                 pybossa.saveTask(task.id, answer).done(function() {
                     deferred.resolve();

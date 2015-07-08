@@ -38,6 +38,7 @@
         <div class="span12 "><!-- Start of Question and Submission DIV (column) -->
             <h1 id="question"><span id="i18n_question">According to you what is the status of this area ?</span></h1> <!-- The question will be loaded here -->
             <div id="answer"> <!-- Start DIV for the submission buttons -->
+                <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
                 <button class="btn btn-answer" value='Picture1'>Picture 1</button>
                 <button class="btn btn-answer" value='Picture2'>Picture 2</button>
                 <button class="btn btn-answer btn-pict2" value='Picture3' style="display:none">Picture 3</button>
@@ -57,13 +58,13 @@
                 The next section includes a button that when a user clicks on it will
                 load the comments, if any, for the given task
             -->
-            <!--<div id="disqus_show_btn" style="margin-top:5px;">
+            <div id="disqus_show_btn" style="margin-top:5px;">
                 <button class="btn btn-primary btn-large btn-disqus" onclick="loadDisqus()"><i class="icon-comments"></i> <span id="i18n_show_comments">Show comments</span></button>
                 <button class="btn btn-large btn-disqus" onclick="loadDisqus()" style="display:none"><i class="icon-comments"></i> <span id="i18n_hide_comments">Hide comments</span></button>
-            </div>
- 
-            <div id="disqus_thread" style="margin-top:5px;display:none"></div>-->
-        </div>
+            </div><!-- End of Disqus Button section -->
+            <!-- Disqus thread for the given task -->
+            <div id="disqus_thread" style="margin-top:5px;display:none"></div>
+        </div><!-- End of Question and Submission DIV (column) -->
     </div>
     <div class="row" style="margin-top:10px; margin-bottom:10px;">
 
@@ -77,21 +78,18 @@
 </div><!-- End of Skeleton Row -->
 
 <script type="text/javascript">
-
-// function loadDisqus() {
-//     $("#disqus_thread").toggle();
-//     $(".btn-disqus").toggle();
-//     var disqus_shortname = 'pybossa'; // required: replace example with your forum shortname
-//     //var disqus_identifier = taskId;
-//     var disqus_developer = 1;
-
-//     (function() {
-//         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-//         dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-//         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-//     })();
-// }
-
+function loadDisqus() {
+    $("#disqus_thread").toggle();
+    $(".btn-disqus").toggle();
+    var disqus_shortname = 'pybossa'; // required: replace example with your forum shortname
+    //var disqus_identifier = taskId;
+    var disqus_developer = 1;
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+}
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
@@ -118,18 +116,14 @@ var messages = {"en": {
 // Update userLocale with server side information
 $(document).ready(function(){
    userLocale = document.getElementById('PYBOSSA_USER_LOCALE').textContent.trim();
-
 });
-
-// function i18n_translate() {
-//     var ids = Object.keys(messages[userLocale])
-//     for (i=0; i<ids.length; i++) {
-//         console.log("Translating: " + ids[i]);
-//         document.getElementById(ids[i]).innerHTML = messages[userLocale][ids[i]];
-//     }
-// }
-
-
+function i18n_translate() {
+    var ids = Object.keys(messages[userLocale])
+    for (i=0; i<ids.length; i++) {
+        console.log("Translating: " + ids[i]);
+        document.getElementById(ids[i]).innerHTML = messages[userLocale][ids[i]];
+    }
+}
 function loadUserProgress() {
     pybossa.userProgress('crowdsourcing1').done(function(data){
         var pct = Math.round((data.done*100)/data.total);
@@ -140,7 +134,6 @@ function loadUserProgress() {
         $("#done").text(data.done);
     });
 }
-
 pybossa.taskLoaded(function(task, deferred) {
     console.log(task);
     if ( !$.isEmptyObject(task) ) {
@@ -159,11 +152,10 @@ pybossa.taskLoaded(function(task, deferred) {
         deferred.resolve(task);
     }
 });
-
 pybossa.presentTask(function(task, deferred) {
     if ( !$.isEmptyObject(task) ) {
         loadUserProgress();
-//        i18n_translate();
+        i18n_translate();
         if (task.info.len > 1) {
             for (var i = 1; i < task.info.len; i++) { 
                 $('.btn-pict' + i).show();
@@ -184,10 +176,10 @@ pybossa.presentTask(function(task, deferred) {
                     deferred.resolve();
                 });
                 $("#loading").fadeIn(500);
-                // if ($("#disqus_thread").is(":visible")) {
-                //     $('#disqus_thread').toggle();
-                //     $('.btn-disqus').toggle();
-                // }
+                if ($("#disqus_thread").is(":visible")) {
+                    $('#disqus_thread').toggle();
+                    $('.btn-disqus').toggle();
+                }
             }
             else {
                 $("#error").show();
@@ -201,6 +193,5 @@ pybossa.presentTask(function(task, deferred) {
         $("#finish").fadeIn(500);
     }
 });
-
 pybossa.run('crowdsourcing1');
 </script>
